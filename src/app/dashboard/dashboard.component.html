@@ -1,0 +1,6 @@
+<!-- Übergabe von Parametern zu Childkomponente -->
+<br-book
+  *ngFor="let bookElement of books; index as i; last as l"
+  [book]="bookElement"
+  [foo]="'some string input'"
+  [index]="i"></br-book>
