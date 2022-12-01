@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Book } from '../shared/book';
+import { RatingState } from '../shared/rating-state-enum';
 
 @Component({
   selector: 'br-book',
@@ -9,8 +10,7 @@ import { Book } from '../shared/book';
 export class BookComponent  implements OnInit {
     // Daten dürfen von Elternkomponente in diese Property hinenfliessen.
   @Input() book?: Book;
-  @Input() foo?: string;
-  @Input() index?: number;
+  @Input() ratingState? : RatingState;
 
   @Output() rateUp = new EventEmitter<Book>();
   @Output() rateDown = new EventEmitter<Book>();

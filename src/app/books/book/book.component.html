@@ -13,12 +13,12 @@
     <p><strong>Rating:</strong>
       <br-book-rating [bookrating]="book.rating"></br-book-rating>
     </p>
-    <p>
+    <!-- <p>
       <br-book-rating-standalone [bookrating]="book.rating"></br-book-rating-standalone>
-    </p>
+    </p> -->
 
-    <button class="btn btn-green" (click)="doRateUp()"> + </button>
-    <button class="btn btn-red" (click)="doRateDown()"> - </button>
+    <button class="btn btn-green" (click)="doRateUp()" [disabled]="ratingState | bookRatingUpperComplete"> + </button>
+    <button class="btn btn-red" (click)="doRateDown()" [disabled]="ratingState | bookRatingLowerComplete"> - </button>
   </div>
 </div>
 

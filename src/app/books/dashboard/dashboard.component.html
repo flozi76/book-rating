@@ -3,8 +3,7 @@
 <br-book
   *ngFor="let bookElement of books; index as i; last as l"
   [book]="bookElement"
-  [foo]="'some string input'"
-  [index]="i"
+  [ratingState]="getRatingState(bookElement)"
   (rateUp)="doRateUp($event)"
   (rateDown)="doRateDown(bookElement)"
   ></br-book>

@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { Book } from './book';
 
 import { BookRatingService } from './book-rating.service';
+import { RatingState } from './rating-state-enum';
 
 describe('BookRatingService', () => {
   let service: BookRatingService;
@@ -62,5 +63,38 @@ describe('BookRatingService', () => {
 
     // Assert
     expect(ratedBook.rating).toBe(5);
+  });
+
+  it('should determine upper rating complete when rating is 5', () => {
+    // Arrange
+    book.rating = 5;
+
+    // Act
+    const rating = service.determineRatingState(book);
+
+    // Assert
+    expect(rating).toBe(RatingState.MaxRatingReached);
+  });
+
+  it('should determine lower rating complete when rating is 1', () => {
+    // Arrange
+    book.rating = 1;
+
+    // Act
+    const rating = service.determineRatingState(book);
+
+    // Assert
+    expect(rating).toBe(RatingState.MinRatingReached);
+  });
+
+  it('should determine lower rating undefined when rating is >1 <5', () => {
+    // Arrange
+    book.rating = 3;
+
+    // Act
+    const rating = service.determineRatingState(book);
+
+    // Assert
+    expect(rating).toBe(undefined);
   });
 });
