@@ -10,6 +10,9 @@
     </div>
     <p>{{ book.description }}</p>
     <p><strong>Preis:</strong> {{ book.price | currency:'Chf'}}</p>
+    <p><strong>Rating:</strong>
+      <br-book-raiting [bookrating]="book.rating"></br-book-raiting>
+    </p>
   </div>
 </div>
 

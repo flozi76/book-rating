@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BooksModule } from './books/books.module';
+import { BookRaitingComponent } from './books/book-raiting/book-raiting.component';
 
 @NgModule({
   declarations: [

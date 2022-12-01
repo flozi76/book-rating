@@ -17,4 +17,9 @@ export class DashboardComponent {
       {isbn: '7895', title: 'Rust', rating: 2, price: 77.6, description: 'Some rusty stuff'}
     ];
   }
+
+  getBookCount(): number {
+    return this.books.length;
+  }
+
 }
