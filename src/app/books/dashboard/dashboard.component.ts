@@ -12,9 +12,11 @@ export class DashboardComponent {
   books2?: Book[]; // allow undefined;
 
   constructor(){
+
     this.books = [
-      {isbn: '1234', title: 'Angular', rating: 5, price: 33.9, description: 'Some dingda'},
-      {isbn: '7895', title: 'Rust', rating: 2, price: 77.6, description: 'Some rusty stuff'}
+      {isbn: '1234', title: 'Angular', rating: 5, price: 33.9, description: 'Angular Book description...'},
+      {isbn: '7895', title: 'Rust', rating: 2, price: 77.6, description: 'Some rusty stuff'},
+      {isbn: '7898', title: 'Coding C#', rating: 4, price: 66.5, description: 'C# bla bla'}
     ];
   }
 

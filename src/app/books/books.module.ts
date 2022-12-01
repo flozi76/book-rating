@@ -5,6 +5,7 @@ import { BooksRoutingModule } from './books-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookComponent } from './book/book.component';
 import { BookRatingComponent } from './book-rating/book-rating.component';
+import { BookRatingStandaloneComponent } from '../components/book-rating-standalone/book-rating-standalone.component';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import { BookRatingComponent } from './book-rating/book-rating.component';
   imports: [
     CommonModule,
     BooksRoutingModule,
+    BookRatingStandaloneComponent,
   ],
   exports: [DashboardComponent]
 })

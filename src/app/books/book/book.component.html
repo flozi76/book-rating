@@ -1,4 +1,4 @@
-<div class="card mb-4" *ngIf="book">
+<div class="card mb-4" *ngIf="book; else nobook">
   <div class="card-body bg-light">
       <img class="img-thumbnail float-end"
         src="//api.angular.schule/avatar/{{ book.rating }}">
@@ -12,6 +12,9 @@
     <p><strong>Preis:</strong> {{ book.price | currency:'Chf'}}</p>
     <p><strong>Rating:</strong>
       <br-book-rating [bookrating]="book.rating"></br-book-rating>
+    </p>
+    <p>
+      <br-book-rating-standalone [bookrating]="book.rating"></br-book-rating-standalone>
     </p>
   </div>
 </div>
