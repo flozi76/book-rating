@@ -24,4 +24,11 @@ export class DashboardComponent {
     return this.books.length;
   }
 
+  doRateUp(book: Book){
+    console.log('UP', book);
+  }
+  doRateDown(book: Book){
+    console.log('DOWN', book);
+  }
+
 }

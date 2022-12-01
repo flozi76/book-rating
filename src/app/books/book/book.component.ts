@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Book } from '../shared/book';
 
 @Component({
@@ -12,6 +12,18 @@ export class BookComponent  implements OnInit {
   @Input() foo?: string;
   @Input() index?: number;
 
+  @Output() rateUp = new EventEmitter<Book>();
+  @Output() rateDown = new EventEmitter<Book>();
+
+  doRateUp(){
+    this.rateUp.emit(this.book)
+  }
+
+  doRateDown(){
+    this.rateDown.emit(this.book)
+  }
+
+  // ----- testing stuff --------
   constructor(){
     console.log('CTOR', this.book)
   }

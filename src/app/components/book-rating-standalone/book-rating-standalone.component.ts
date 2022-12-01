@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 @Component({
@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   templateUrl: './book-rating-standalone.component.html',
   styleUrls: ['./book-rating-standalone.component.scss'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [NgFor]
 })
 
 export class BookRatingStandaloneComponent {
