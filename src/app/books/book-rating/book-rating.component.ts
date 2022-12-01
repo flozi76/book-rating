@@ -1,19 +1,19 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'br-book-raiting',
-  templateUrl: './book-raiting.component.html',
-  styleUrls: ['./book-raiting.component.scss']
+  selector: 'br-book-rating',
+  templateUrl: './book-rating.component.html',
+  styleUrls: ['./book-rating.component.scss']
 })
-export class BookRaitingComponent {
+export class BookRatingComponent {
 
   @Input() bookrating? : number;
 
-  raitings() : number[]{
+  ratings() : number[]{
     return new Array(this.bookrating)
   }
 
-  missingRaitings() : number[]{
+  missingRatings() : number[]{
     let rait:number =  this.bookrating??0;
     var remainingNumber = 5 - rait;
     return new Array(remainingNumber)
