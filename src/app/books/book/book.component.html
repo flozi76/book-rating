@@ -9,6 +9,7 @@
       </h2>
     </div>
     <p>{{ book.description }}</p>
+    <p>{{ book.isbn }}</p>
     <p><strong>Preis:</strong> {{ book.price | currency:'Chf'}}</p>
     <p><strong>Rating:</strong>
       <br-book-rating [bookrating]="book.rating"></br-book-rating>
@@ -19,6 +20,12 @@
 
     <button class="btn btn-green" (click)="doRateUp()" [disabled]="ratingState | bookRatingUpperComplete"> + </button>
     <button class="btn btn-red" (click)="doRateDown()" [disabled]="ratingState | bookRatingLowerComplete"> - </button>
+
+    <a [routerLink]="['/books', book.isbn]"> Details </a>
+    <!-- <a [routerLink]="'/books/'+ book.isbn"> Details 2 </a> -->
+    <!-- <a routerlink="/books/{{book.isbn}}"> details 3 </a> -->
+<!--
+    <a routerLink="{{book.isbn}}"> Details 3 </a> -->
   </div>
 </div>
 

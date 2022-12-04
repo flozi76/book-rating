@@ -8,6 +8,7 @@ import { BookRatingComponent } from './book-rating/book-rating.component';
 import { BookRatingStandaloneComponent } from '../components/book-rating-standalone/book-rating-standalone.component';
 import { BookRatingUpperCompletePipe } from './pipes/book-rating-upper-complete.pipe';
 import { BookRatingLowerCompletePipe } from './pipes/book-rating-lower-complete.pipe';
+import { BookDetailsComponent } from './book-details/book-details.component';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { BookRatingLowerCompletePipe } from './pipes/book-rating-lower-complete.
     BookComponent,
     BookRatingComponent,
     BookRatingUpperCompletePipe,
-    BookRatingLowerCompletePipe
+    BookRatingLowerCompletePipe,
+    BookDetailsComponent
   ],
   imports: [
     CommonModule,

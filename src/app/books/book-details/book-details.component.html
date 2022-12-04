@@ -1,0 +1,9 @@
+<a [routerLink]="'/books'"> Dashboard </a>
+<a [routerLink]="['/books', '9783864907791']"> Angular </a>
+
+<ng-container *ngIf="book">
+  <h2>{{book.title}}</h2>
+  <p>{{book.description}}</p>
+  <p>{{book.isbn}}</p>
+
+</ng-container>

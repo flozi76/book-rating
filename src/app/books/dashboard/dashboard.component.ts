@@ -2,6 +2,7 @@ import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
+import { BookStoreService } from '../shared/book-store.service';
 import { RatingState } from '../shared/rating-state-enum';
 
 @Component({
@@ -14,13 +15,20 @@ export class DashboardComponent {
   books2?: Book[]; // allow undefined;
 
   // wenn man den mit private dekoriert wird es automatisch als property in der klasse sichtbar
-  constructor(private ratingService: BookRatingService) {
+  constructor(private ratingService: BookRatingService, private bookStoreService: BookStoreService) {
 
-    this.books = [
-      { isbn: '1234', title: 'Angular', rating: 5, price: 33.9, description: 'Angular Book description...' },
-      { isbn: '7895', title: 'Rust', rating: 2, price: 77.6, description: 'Some rusty stuff' },
-      { isbn: '7898', title: 'Coding C#', rating: 4, price: 66.5, description: 'C# bla bla' }
-    ];
+    // this.books = [
+    //   { isbn: '1234', title: 'Angular', rating: 5, price: 33.9, description: 'Angular Book description...' },
+    //   { isbn: '7895', title: 'Rust', rating: 2, price: 77.6, description: 'Some rusty stuff' },
+    //   { isbn: '7898', title: 'Coding C#', rating: 4, price: 66.5, description: 'C# bla bla' }
+    // ];
+
+    this.bookStoreService.getAll().subscribe(books => {
+      // Errorhandling über next { ... }
+      this.books = books;
+    });
+
+
   }
 
   getBookCount(): number {
