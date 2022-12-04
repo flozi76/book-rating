@@ -1,9 +1,11 @@
 <!-- Übergabe von Parametern zu Childkomponente -->
 <h3>Book Count: {{getBookCount()}}</h3>
+<button class="btn btn-blue" (click)="doResetBookList()"> Reset book list</button>
 <br-book
   *ngFor="let bookElement of books; index as i; last as l"
   [book]="bookElement"
   [ratingState]="getRatingState(bookElement)"
   (rateUp)="doRateUp($event)"
   (rateDown)="doRateDown(bookElement)"
+  (deleteBook)="doDeleteBook($event)"
   ></br-book>

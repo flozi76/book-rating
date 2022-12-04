@@ -7,7 +7,6 @@ import { Book } from './book';
   providedIn: 'root'
 })
 export class BookStoreService {
-
   private apiUrl = 'https://api.angular.schule';
 
   constructor(private http: HttpClient) { }
@@ -28,5 +27,14 @@ export class BookStoreService {
 
   search(term: string):Observable<Book[]>{
     return this.http.get<Book[]>(this.apiUrl + '/books/search/'+ term)
+  }
+
+  deleteBook(isbn: String) :Observable<String> {
+    return this.http.delete<String>(this.apiUrl + '/books/'+ isbn)
+  }
+
+  resetBookList() {
+    // Die Angabe von Book ist irrelevant, auch wenn sonstwas zurückgegeben wird, gibt's hier keinen fehler
+    return this.http.delete<Book[]>(this.apiUrl + '/books/')
   }
 }

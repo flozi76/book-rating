@@ -22,13 +22,14 @@ export class DashboardComponent {
     //   { isbn: '7895', title: 'Rust', rating: 2, price: 77.6, description: 'Some rusty stuff' },
     //   { isbn: '7898', title: 'Coding C#', rating: 4, price: 66.5, description: 'C# bla bla' }
     // ];
+    this.loadBookList();
+  }
 
+  loadBookList() {
     this.bookStoreService.getAll().subscribe(books => {
       // Errorhandling über next { ... }
       this.books = books;
     });
-
-
   }
 
   getBookCount(): number {
@@ -47,6 +48,24 @@ export class DashboardComponent {
     this.updateList(ratedDown);
     console.log('DOWN', book);
     // var, let, const
+  }
+
+  doDeleteBook(book: Book) {
+    console.log("deleting book...", book);
+    const isbn: String = book.isbn;
+    if (confirm('do you want do delete the book: ' + book.title)) {
+      this.bookStoreService.deleteBook(isbn).subscribe(response => {
+        console.log("book delete response: ", response);
+        this.loadBookList();
+      });
+    }
+  }
+
+  doResetBookList() {
+    this.bookStoreService.resetBookList().subscribe(response => {
+      console.log("reset book list response: ", response);
+      this.loadBookList();
+    })
   }
 
   getRatingState(book: Book): RatingState | undefined {

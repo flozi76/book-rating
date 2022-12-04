@@ -1,7 +1,6 @@
 <div class="card mb-4" *ngIf="book; else nobook">
   <div class="card-body bg-light">
-      <img class="img-thumbnail float-end"
-        src="//api.angular.schule/avatar/{{ book.rating }}">
+    <img class="img-thumbnail float-end" src="//api.angular.schule/avatar/{{ book.rating }}">
     <div class="card-title">
       <h2>
         {{ book.title }}
@@ -21,10 +20,15 @@
     <button class="btn btn-green" (click)="doRateUp()" [disabled]="ratingState | bookRatingUpperComplete"> + </button>
     <button class="btn btn-red" (click)="doRateDown()" [disabled]="ratingState | bookRatingLowerComplete"> - </button>
 
-    <a [routerLink]="['/books', book.isbn]"> Details </a>
+    <p>
+      <a [routerLink]="['/books', book.isbn]"> Details </a>
+    </p>
+
+    <button class="btn btn-red" (click)="doDeleteBook()"> Delete book </button>
+
     <!-- <a [routerLink]="'/books/'+ book.isbn"> Details 2 </a> -->
     <!-- <a routerlink="/books/{{book.isbn}}"> details 3 </a> -->
-<!--
+    <!--
     <a routerLink="{{book.isbn}}"> Details 3 </a> -->
   </div>
 </div>
