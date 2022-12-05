@@ -9,6 +9,8 @@ import { BookRatingStandaloneComponent } from '../components/book-rating-standal
 import { BookRatingUpperCompletePipe } from './pipes/book-rating-upper-complete.pipe';
 import { BookRatingLowerCompletePipe } from './pipes/book-rating-lower-complete.pipe';
 import { BookDetailsComponent } from './book-details/book-details.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BookDeleteConfirmationDialogComponent } from './dialogs/book-delete-confirmation-dialog/book-delete-confirmation-dialog.component';
 
 
 @NgModule({
@@ -18,12 +20,14 @@ import { BookDetailsComponent } from './book-details/book-details.component';
     BookRatingComponent,
     BookRatingUpperCompletePipe,
     BookRatingLowerCompletePipe,
-    BookDetailsComponent
+    BookDetailsComponent,
+    BookDeleteConfirmationDialogComponent
   ],
   imports: [
     CommonModule,
     BooksRoutingModule,
     BookRatingStandaloneComponent,
+    MatDialogModule
   ],
   exports: [DashboardComponent]
 })

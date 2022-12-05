@@ -4,6 +4,8 @@ import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
 import { BookStoreService } from '../shared/book-store.service';
 import { RatingState } from '../shared/rating-state-enum';
+import { MatDialog } from '@angular/material/dialog';
+import { BookDeleteConfirmationDialogComponent } from '../dialogs/book-delete-confirmation-dialog/book-delete-confirmation-dialog.component';
 
 @Component({
   selector: 'br-dashboard',
@@ -15,7 +17,7 @@ export class DashboardComponent {
   books2?: Book[]; // allow undefined;
 
   // wenn man den mit private dekoriert wird es automatisch als property in der klasse sichtbar
-  constructor(private ratingService: BookRatingService, private bookStoreService: BookStoreService) {
+  constructor(private ratingService: BookRatingService, private bookStoreService: BookStoreService, private dialog: MatDialog) {
 
     // this.books = [
     //   { isbn: '1234', title: 'Angular', rating: 5, price: 33.9, description: 'Angular Book description...' },
@@ -53,12 +55,21 @@ export class DashboardComponent {
   doDeleteBook(book: Book) {
     console.log("deleting book...", book);
     const isbn: String = book.isbn;
-    if (confirm('do you want do delete the book: ' + book.title)) {
-      this.bookStoreService.deleteBook(isbn).subscribe(response => {
-        console.log("book delete response: ", response);
-        this.loadBookList();
-      });
-    }
+    const enterAnimationDuration = '500ms'
+    const dialogRef = this.dialog.open(BookDeleteConfirmationDialogComponent, {
+      data: book,
+      width: '500px',
+      enterAnimationDuration
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.bookStoreService.deleteBook(isbn).subscribe(response => {
+          console.log("book delete response: ", response);
+          this.loadBookList();
+        });
+      }
+    });
   }
 
   doResetBookList() {

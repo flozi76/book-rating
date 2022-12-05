@@ -23,9 +23,9 @@ export class BookDetailsComponent {
       const isbn = params.get('isbn')!;
       console.log(isbn);
 
-      const bookObservable = bookStoreService.getSingle(isbn);
+      const bookObservable = this.bookStoreService.getSingle(isbn);
       bookObservable.subscribe(book => {
-        
+
         this.book = book;
       });
     });

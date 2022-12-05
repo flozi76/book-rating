@@ -1,7 +1,9 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatDialog } from '@angular/material/dialog';
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
+import { BookStoreService } from '../shared/book-store.service';
 import { RatingState } from '../shared/rating-state-enum';
 
 import { DashboardComponent } from './dashboard.component';
@@ -22,7 +24,14 @@ describe('DashboardComponent', () => {
             rateUp: (b: Book) => b,
             determineRatingState: (book: Book): RatingState | undefined => undefined
           }
-        }
+        },
+        {
+          provide: BookStoreService,
+          useValue: { getAll : () => { subscribe: (next: (value: String) => void) => undefined}}
+          // TODO: Wie definiert man den provider für subscribe, bzw. callback Übergabe?
+        },
+        { provide: MatDialog, useValue: {}}
+
       ]
     })
       .compileComponents();
@@ -47,6 +56,7 @@ describe('DashboardComponent', () => {
 
     // spyOn(service, 'rateUp'); //-> Error weil kein buch zurückgegeben wird
     // spyOn(service, 'rateUp').and.callThrough(); // => ok wird die methode von oben aufgerufen
+    // spyOn(service, 'rateUp').and.callFake(); // => ok wird eine fake methode aufgerufen
     spyOn(service, 'rateUp').and.returnValue(book); // wir definieren hier was zurückgegeben wird
 
     // Act
