@@ -1,0 +1,49 @@
+<form [formGroup]="bookForm" (ngSubmit)="submitForm()">
+  <div class="form-group">
+    <label for="isbnInput">ISBN</label>
+    <input id="isbnInput" type="text" class="form-control" formControlName="isbn">
+    <val-errors controlName="isbn">
+      <ng-template valError="required">Die ISBN darf nicht leer sein.</ng-template>
+      <ng-template valError="minlength">Die ISBN ist zu kurz.</ng-template>
+      <ng-template valError="maxlength">Die ISBN ist zu lang.</ng-template>
+      <ng-template valError="pattern">Die ISBN entspricht nicht dem gewünschten format.</ng-template>
+      <!-- <ng-template valFallback let-label let-type="type" let-error="error">{{ label }} has an unhandled error of type {{ type }}: {{ error | json }}</ng-template> -->
+      <ng-template valFallback let-label let-type="type" let-error="error">Die ISBN ist ungültig</ng-template>
+    </val-errors>
+
+    <!-- <div class="feedback-error" *ngIf="isInvalid('isbn')">Die ISBN ist ungültig.</div>
+    <div class="feedback-error" *ngIf="hasError('isbn', 'minlength')">Die ISBN ist zu kurz.</div> -->
+
+    <!-- <pre>{{bookForm.controls.isbn.errors | json}}</pre> -->
+  </div>
+  <div class="form-group">
+    <label for="titleInput">Title</label>
+    <input id="titleInput" type="text" class="form-control" formControlName="title">
+
+    <val-errors controlName="title">
+      <ng-template valError="required">Der Titel darf nicht leer sein.</ng-template>
+      <ng-template valError="maxlength">Der Titel ist zu lang.</ng-template>
+      <ng-template valFallback let-label let-type="type" let-error="error">Der Titel ist ungültig</ng-template>
+    </val-errors>
+
+  </div>
+  <div class="form-group">
+    <label for="descInput">Description</label>
+    <textarea id="descInput" type="text" class="form-control" formControlName="description"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="ratInput">Rating</label>
+    <input id="ratInput" type="number" class="form-control" formControlName="rating">
+  </div>
+  <div class="form-group">
+    <label for="priceInput">Price</label>
+    <input id="priceInput" type="number" class="form-control" formControlName="price">
+
+  </div>
+
+  <!-- <button type="submit" class="btn btn-red" [disabled]="bookForm.invalid">Speichern</button> -->
+  <button type="submit" class="btn btn-red">Speichern</button>
+
+</form>
+
+<pre> {{bookForm.value | json}} </pre>

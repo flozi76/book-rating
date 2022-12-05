@@ -11,6 +11,10 @@ import { BookRatingLowerCompletePipe } from './pipes/book-rating-lower-complete.
 import { BookDetailsComponent } from './book-details/book-details.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { BookDeleteConfirmationDialogComponent } from './dialogs/book-delete-confirmation-dialog/book-delete-confirmation-dialog.component';
+import { BookSearchComponent } from './book-search/book-search.component';
+import { BookCreateComponent } from './book-create/book-create.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ValdemortModule } from 'ngx-valdemort';
 
 
 @NgModule({
@@ -21,13 +25,17 @@ import { BookDeleteConfirmationDialogComponent } from './dialogs/book-delete-con
     BookRatingUpperCompletePipe,
     BookRatingLowerCompletePipe,
     BookDetailsComponent,
-    BookDeleteConfirmationDialogComponent
+    BookDeleteConfirmationDialogComponent,
+    BookSearchComponent,
+    BookCreateComponent
   ],
   imports: [
     CommonModule,
     BooksRoutingModule,
     BookRatingStandaloneComponent,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule,
+    ValdemortModule
   ],
   exports: [DashboardComponent]
 })

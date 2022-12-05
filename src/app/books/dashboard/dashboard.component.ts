@@ -15,6 +15,8 @@ import { BookDeleteConfirmationDialogComponent } from '../dialogs/book-delete-co
 export class DashboardComponent {
   books: Book[] = []; // cannot be undefined. Initialized here or in constructor.
   books2?: Book[]; // allow undefined;
+  intervalId?: NodeJS.Timer;
+  time?: Date;
 
   // wenn man den mit private dekoriert wird es automatisch als property in der klasse sichtbar
   constructor(private ratingService: BookRatingService, private bookStoreService: BookStoreService, private dialog: MatDialog) {
@@ -81,6 +83,19 @@ export class DashboardComponent {
 
   getRatingState(book: Book): RatingState | undefined {
     return this.ratingService.determineRatingState(book);
+  }
+
+  ngOnInit(){
+    console.log("on init dashboard ...");
+    this.intervalId = setInterval(() => {
+      this.time = new Date();
+    }, 1000);
+
+  }
+
+  ngOnDestroy(){
+    console.log("on destroy dashboard ...");
+    clearInterval(this.intervalId);
   }
 
   private updateList(ratedBook: Book) {

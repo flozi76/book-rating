@@ -30,14 +30,14 @@ export class BookComponent  implements OnInit {
 
   // ----- testing stuff --------
   constructor(){
-    console.log('CTOR', this.book)
+    // console.log('CTOR', this.book)
   }
 
   ngOnChanges(changes: SimpleChanges){
-    console.log('ONChange', this.book)
+    // console.log('ONChange', this.book)
   }
 
   ngOnInit(): void {
-    console.log('ONINIT', this.book)
+    // console.log('ONINIT', this.book)
   }
 }
