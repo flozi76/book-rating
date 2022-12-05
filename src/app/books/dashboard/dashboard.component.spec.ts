@@ -29,6 +29,8 @@ describe('DashboardComponent', () => {
           provide: BookStoreService,
           useValue: { getAll : () => { subscribe: (next: (value: String) => void) => undefined}}
           // TODO: Wie definiert man den provider für subscribe, bzw. callback Übergabe?
+          // => of([])
+          // Mock für den Router => in doku vorhanden
         },
         { provide: MatDialog, useValue: {}}
 

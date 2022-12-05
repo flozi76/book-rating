@@ -29,8 +29,8 @@ export class BookStoreService {
     return this.http.get<Book[]>(this.apiUrl + '/books/search/'+ term)
   }
 
-  deleteBook(isbn: String) :Observable<String> {
-    return this.http.delete<String>(this.apiUrl + '/books/'+ isbn)
+  deleteBook(isbn: String) :Observable<unknown> {
+    return this.http.delete<unknown>(this.apiUrl + '/books/'+ isbn)
   }
 
   resetBookList() {
