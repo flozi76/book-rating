@@ -17,7 +17,7 @@
     <!-- <pre>{{bookForm.controls.isbn.errors | json}}</pre> -->
   </div>
   <div class="form-group">
-    <label for="titleInput">Title</label>
+    <label for="titleInput" i18n>Title</label>
     <input id="titleInput" type="text" class="form-control" formControlName="title">
 
     <val-errors controlName="title">
@@ -25,25 +25,36 @@
       <ng-template valError="maxlength">Der Titel ist zu lang.</ng-template>
       <ng-template valFallback let-label let-type="type" let-error="error">Der Titel ist ungültig</ng-template>
     </val-errors>
-
   </div>
+
   <div class="form-group">
-    <label for="descInput">Description</label>
+    <label for="descInput" i18n>Description</label>
     <textarea id="descInput" type="text" class="form-control" formControlName="description"></textarea>
   </div>
+
   <div class="form-group">
-    <label for="ratInput">Rating</label>
+    <label for="aurthors" i18n>Authors</label>
+    <div formArrayName="authors">
+      <input type="text" *ngFor="let c of bookForm.controls.authors.controls; index as i" [formControlName]="i">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="ratInput" i18n>Rating</label>
     <input id="ratInput" type="number" class="form-control" formControlName="rating">
   </div>
+
   <div class="form-group">
-    <label for="priceInput">Price</label>
+    <label for="priceInput" i18n>Price</label>
     <input id="priceInput" type="number" class="form-control" formControlName="price">
 
   </div>
 
   <!-- <button type="submit" class="btn btn-red" [disabled]="bookForm.invalid">Speichern</button> -->
-  <button type="submit" class="btn btn-red">Speichern</button>
+  <button type="submit" class="btn btn-red" i18n>Speichern</button>
 
 </form>
+
+<span>{{localizedText}}</span>
 
 <pre> {{bookForm.value | json}} </pre>

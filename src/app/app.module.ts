@@ -6,10 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 // import { BooksModule } from './books/books.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DefaultNotFoundPageComponent } from './default-not-found-page/default-not-found-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DefaultNotFoundPageComponent
   ],
   imports: [
     BrowserModule,

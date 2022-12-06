@@ -9,7 +9,7 @@ const routes: Routes = [
   // Variante mit dashboard als präfix
   // { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
   // { path: 'dashboard', component: DashboardComponent },
-  { path: '', component: DashboardComponent },
+  { path: '', component: DashboardComponent, title : "Dashboard" },
   { path: 'search', component: BookSearchComponent },
   { path: 'create', component: BookCreateComponent },
   { path: ':isbn', component: BookDetailsComponent }

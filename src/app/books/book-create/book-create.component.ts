@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Book } from '../shared/book';
 import {ValdemortConfig } from 'ngx-valdemort'
+import { BookStoreService } from '../shared/book-store.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'br-book-create',
@@ -10,9 +12,8 @@ import {ValdemortConfig } from 'ngx-valdemort'
 })
 export class BookCreateComponent {
 
-  constructor(private config: ValdemortConfig ){
-    config.errorClasses = "feedback-error"
-  }
+  someLocalizeText : string = "Localize Text";
+  localizedText : string = this.someLocalizeText;
 
   bookForm = new FormGroup({
     isbn: new FormControl('', {
@@ -47,9 +48,18 @@ export class BookCreateComponent {
       validators: [
         Validators.min(0),
       ]} ),
+    authors: new FormArray([
+      new FormControl('', { nonNullable: true }),
+      new FormControl('', { nonNullable: true }),
+      new FormControl('', { nonNullable: true }),
+    ]),
     nullableProp: new FormControl<string | null>('', { nonNullable: true }),
   });
 
+  constructor(private config: ValdemortConfig, private bookStoreService : BookStoreService, private router : Router){
+    config.errorClasses = "feedback-error"
+    this.localizedText = $localize `${this.someLocalizeText}`;
+  }
 
   isInvalid(controlName: string) : boolean {
     const control = this.bookForm.get(controlName);
@@ -72,6 +82,18 @@ export class BookCreateComponent {
     }
 
     const book: Book = this.bookForm.getRawValue();
+
+    this.bookForm.patchValue({title : 'Gugugg'});
+
+    this.bookStoreService.create(book).subscribe(receivedBook => {
+
+      // this.router.navigate(['/books', receivedBook.isbn]) // navigate to detail
+      //this.router.navigateByUrl('/books') // Navigate to url
+      // this.bookForm.disable();
+
+      this.bookForm.reset();
+      this.bookForm.markAsUntouched();
+    });
   }
 }
 

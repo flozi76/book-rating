@@ -7,3 +7,8 @@
   <p>{{book.isbn}}</p>
 
 </ng-container>
+
+<span *ngIf="resizeWindow$ | async as resizeEvent">
+  Window Width:
+<pre>{{resizeEvent | json}}</pre>
+</span>
