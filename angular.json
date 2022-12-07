@@ -5,9 +5,9 @@
   "projects": {
     "book-rating": {
       "i18n": {
-        "sourceLocale":"en-US",
+        "sourceLocale": "en-US",
         "locales": {
-          "de-CH":"src/locale/messages.de.xlf"
+          "de-CH": "src/locale/messages.de.xlf"
         }
       },
       "projectType": "application",
@@ -23,7 +23,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "localize":["de-CH"],
+            "localize": [
+              "de-CH"
+            ],
             "outputPath": "dist/book-rating",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -111,6 +113,9 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": false,
+    "schematicCollections": [
+      "@ngrx/schematics"
+    ]
   }
 }

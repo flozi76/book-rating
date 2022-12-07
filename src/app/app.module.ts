@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -7,6 +7,9 @@ import { AppComponent } from './app.component';
 // import { BooksModule } from './books/books.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultNotFoundPageComponent } from './default-not-found-page/default-not-found-page.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { DefaultNotFoundPageComponent } from './default-not-found-page/default-n
     AppRoutingModule,
     // BooksModule, Für Lazy Loading auskommentiert
     HttpClientModule,
-    BrowserAnimationsModule, // == provideHttpClient()
+    BrowserAnimationsModule,
+    StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
+    EffectsModule.forRoot([]), // == provideHttpClient()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { fromEvent, map, Observable } from 'rxjs';
+import { concatMap, fromEvent, map, Observable, switchMap } from 'rxjs';
 import { Book } from '../shared/book';
 import { BookStoreService } from '../shared/book-store.service';
 
@@ -11,7 +11,7 @@ import { BookStoreService } from '../shared/book-store.service';
 })
 export class BookDetailsComponent {
 
-  book?: Book
+  book$: Observable<Book>;
 
   resizeWindow$?: Observable<number>;
 
@@ -28,16 +28,24 @@ export class BookDetailsComponent {
       })
     );
 
-    // Asynchroner Weg / PUSH
-    this.route.paramMap.subscribe(params => {
-      const isbn = params.get('isbn')!;
-      console.log(isbn);
 
-      const bookObservable = this.bookStoreService.getSingle(isbn);
-      bookObservable.subscribe(book => {
+    // TODO: Bei Fehler zu fehlerseite routen?
+    // tap({ error: () => { // do whatewer }}) untersuchen
+    this.book$ = this.route.paramMap.pipe(
+      map(params => params.get('isbn')!),
+      switchMap(isbn => this.bookStoreService.getSingle(isbn))
+    );
 
-        this.book = book;
-      });
-    });
+    // // Asynchroner Weg / PUSH
+    // this.route.paramMap.subscribe(params => {
+    //   const isbn = params.get('isbn')!;
+    //   console.log(isbn);
+
+    //   const bookObservable = this.bookStoreService.getSingle(isbn);
+    //   bookObservable.subscribe(book => {
+
+    //     this.book = book;
+    //   });
+    // });
   }
 }
