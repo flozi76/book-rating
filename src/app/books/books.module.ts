@@ -15,6 +15,10 @@ import { BookSearchComponent } from './book-search/book-search.component';
 import { BookCreateComponent } from './book-create/book-create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ValdemortModule } from 'ngx-valdemort';
+import { StoreModule } from '@ngrx/store';
+import * as fromBook from './store/book.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { BookEffects } from './store/book.effects';
 
 
 @NgModule({
@@ -35,7 +39,9 @@ import { ValdemortModule } from 'ngx-valdemort';
     BookRatingStandaloneComponent,
     MatDialogModule,
     ReactiveFormsModule,
-    ValdemortModule
+    ValdemortModule,
+    StoreModule.forFeature(fromBook.bookFeatureKey, fromBook.reducer),
+    EffectsModule.forFeature([BookEffects])
   ],
   exports: [DashboardComponent]
 })
