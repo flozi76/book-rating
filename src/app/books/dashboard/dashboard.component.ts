@@ -6,6 +6,9 @@ import { BookStoreService } from '../shared/book-store.service';
 import { RatingState } from '../shared/rating-state-enum';
 import { MatDialog } from '@angular/material/dialog';
 import { BookDeleteConfirmationDialogComponent } from '../dialogs/book-delete-confirmation-dialog/book-delete-confirmation-dialog.component';
+import { Store } from '@ngrx/store';
+import { loadBooks } from '../store/book.actions';
+import { selectBooks, selectBooksLoading } from '../store/book.selectors';
 
 @Component({
   selector: 'br-dashboard',
@@ -18,15 +21,23 @@ export class DashboardComponent {
   intervalId?: NodeJS.Timer;
   time?: Date;
 
+  loading$ = this.store.select(selectBooksLoading);
+
   // wenn man den mit private dekoriert wird es automatisch als property in der klasse sichtbar
-  constructor(private ratingService: BookRatingService, private bookStoreService: BookStoreService, private dialog: MatDialog) {
+  constructor(private ratingService: BookRatingService, private bookStoreService: BookStoreService, private dialog: MatDialog, private store: Store) {
 
     // this.books = [
     //   { isbn: '1234', title: 'Angular', rating: 5, price: 33.9, description: 'Angular Book description...' },
     //   { isbn: '7895', title: 'Rust', rating: 2, price: 77.6, description: 'Some rusty stuff' },
     //   { isbn: '7898', title: 'Coding C#', rating: 4, price: 66.5, description: 'C# bla bla' }
     // ];
-    this.loadBookList();
+    // this.loadBookList();
+
+    this.store.dispatch(loadBooks());
+
+    this.store.select(selectBooks).subscribe(books => {
+      this.books = books;
+    })
   }
 
   loadBookList() {

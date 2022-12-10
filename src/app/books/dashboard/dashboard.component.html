@@ -1,4 +1,5 @@
 <!-- Übergabe von Parametern zu Childkomponente -->
+<div *ngIf="loading$ | async">LOADING...</div>
 <h3>Book Count: {{getBookCount()}}</h3>
 <button class="btn btn-blue" (click)="doResetBookList()"> Reset book list</button>
 <p>{{time | date:'longTime'}}</p>
