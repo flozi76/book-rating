@@ -4,8 +4,15 @@
       Dashboard </a>
     <a [routerLink]="['/books/search']" routerLinkActive="active" class="me-2"> Search </a>
     <a [routerLink]="['/books/create']" routerLinkActive="active" class="me-2"> Create </a>
+    <a [routerLink]="['/admin']" routerLinkActive="active" class="me-2"> Admin </a>
+    <a [routerLink]="['/weather']" routerLinkActive="active" class="me-2" i18n> Weather </a>
   </nav>
   <h1>{{ title }}</h1>
+  <h1>{{ pageTitle$ | async }}</h1>
   <router-outlet></router-outlet>
   <!-- TOOD: router outlet needed when routing has to be loaded here -->
+
+  <pre>
+    {{ pageTitle$ | async }}
+  </pre>
 </div>

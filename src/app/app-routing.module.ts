@@ -6,7 +6,8 @@ import { DefaultNotFoundPageComponent } from './default-not-found-page/default-n
 const routes: Routes = [
   { path: '', redirectTo: 'books', pathMatch: 'full' }, // path match full wird fast immer bei einer weiterleitung ab dem leeren pfad (root url)
   { path: 'books', loadChildren: () => import('./books/books.module').then(m => m.BooksModule) },
-  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) }, // oder default export in books modul
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  { path: 'weather', loadChildren: () => import('./weather/weather.module').then(m => m.WeatherModule) }, // oder default export in books modul
   {
     path: '**',
     component: DefaultNotFoundPageComponent,
